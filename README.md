@@ -9,6 +9,6 @@ This repository holds various customisations and files supporting my investigati
 
 ## Model Files
 
-### Name
-- Purpose: 
+### Wise ancient
+- Purpose: To provide answers referencing history, philosphy and theology in a semi-crptic manner. Think a wizard consulting a bound demon for hidden wisdoms.
 - Examples:
