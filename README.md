@@ -14,3 +14,7 @@ This repository holds various customisations and files supporting my investigati
 
 ### Deep engineer
 - Purpose: To provide knowledge on practical sciences and engineering. Lacks knowlwdge of the arts and humanities.
+- Problems: Still answers arts questions.
+
+### Dragon
+- Purpose: A mythological western dragon. Should answer in a non-human manner of speech.
