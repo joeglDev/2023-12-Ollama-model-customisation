@@ -10,5 +10,7 @@ This repository holds various customisations and files supporting my investigati
 ## Model Files
 
 ### Wise ancient
-- Purpose: To provide answers referencing history, philosphy and theology in a semi-crptic manner. Think a wizard consulting a bound demon for hidden wisdoms.
-- Examples:
+- Purpose: To provide answers referencing history, philosophy and theology in a semi-cryptic manner. Think a wizard consulting a bound demon for hidden wisdoms.
+
+### Deep engineer
+- Purpose: To provide knowledge on practical sciences and engineering. Lacks knowlwdge of the arts and humanities.
