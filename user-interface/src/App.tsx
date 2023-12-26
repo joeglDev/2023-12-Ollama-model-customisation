@@ -1,16 +1,14 @@
-import './App.css'
-import { ChatArea } from './ChatArea'
-import { Summary } from './Summary'
+import "./App.css";
+import { ChatArea } from "./ChatArea";
+import { Summary } from "./Summary";
 
 function App() {
-
-
   return (
     <>
-     <Summary />
-     <ChatArea />
+      <Summary />
+      <ChatArea />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

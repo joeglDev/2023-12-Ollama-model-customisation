@@ -1,4 +1,4 @@
-# User interface 
+# User interface
 
 User Interface to allows graphical chat with LLM.
 
@@ -7,7 +7,9 @@ User Interface to allows graphical chat with LLM.
 - React
 - Vite
 - TypeScript
+- Ollama
+- Mistral LLM
 
 ## TODO
-1. Select model from a list
-2. Stream response instead of waiting
+
+1. Stream response instead of waiting
