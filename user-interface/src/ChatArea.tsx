@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { Card } from "./components/Card"
+import { getChatCompletion } from "./api";
 
 export const ChatArea = () => {
     const [input, setInput] = useState('');
@@ -7,17 +8,21 @@ export const ChatArea = () => {
     const [isLoading, setIsLoading] = useState(false);
     const loadingText = 'Querying the model. Please be patient this may take a while.';
 
-    const onSubmit = () => {
-        //set load
+    const onSubmit = async () => {
         setIsLoading(true)
 
-        //refresh 
+        // refresh input
         const currentInput = input;
         setInput('');
         
-        //make api call
+        // make api call
+        const rawResponse = await getChatCompletion(currentInput);
 
         // remove load display response or error code
+        if (rawResponse.response) {
+            setOutput(rawResponse.response)
+            setIsLoading(false);
+        }
 
     }
 
@@ -29,7 +34,7 @@ return (
     </Card>
 
     <Card>
-    <p aria-label="Chat response">{isLoading ? loadingText : output}</p>
+    <p aria-label="Chat response" aria-live="assertive">{isLoading ? loadingText : output}</p>
     </Card>
     </section>
 )
