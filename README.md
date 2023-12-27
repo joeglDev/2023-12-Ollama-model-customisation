@@ -13,8 +13,12 @@ This repository holds various customisations and files supporting my investigati
 - Purpose: To provide answers referencing history, philosophy and theology in a semi-cryptic manner. Think a wizard consulting a bound demon for hidden wisdoms.
 
 ### Deep engineer
-- Purpose: To provide knowledge on practical sciences and engineering. Lacks knowlwdge of the arts and humanities.
+- Purpose: To provide knowledge on practical sciences and engineering. Lacks knowledge of the arts and humanities.
 - Problems: Still answers arts questions.
 
 ### Dragon
 - Purpose: A mythological western dragon. Should answer in a non-human manner of speech.
+
+## Start guide
+
+Add start / dev guide here
