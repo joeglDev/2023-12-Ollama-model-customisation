@@ -4,6 +4,10 @@ interface GetChatCompletionRequest {
   stream: boolean;
 }
 
+interface ReadableStream<R = any> {
+  [Symbol.asyncIterator](): AsyncIterableIterator<R>;
+}
+
 export const getChatCompletion = async (prompt: string, model: string) => {
   // generate request body
   const req: GetChatCompletionRequest = {
@@ -21,36 +25,41 @@ export const getChatCompletion = async (prompt: string, model: string) => {
       body: JSON.stringify(req),
     });
 
+    // TODO: fix any type
     const result = await res.json();
 
     return result;
   } catch (error) {
-    console.log(`Unexpected error: ${error}`);
+    throw Error(`Unexpected error: ${error}`);
   }
 };
 
-export const getChatCompletionWithStream = async (prompt: string, model: string) => {
-    // generate request body
-    const req: GetChatCompletionRequest = {
-      model,
-      prompt,
-      stream: true,
-    };
+export const getChatCompletionWithStream = async (
+  prompt: string,
+  model: string,
+) => {
+  // generate request body
+  const req: GetChatCompletionRequest = {
+    model,
+    prompt,
+    stream: true,
+  };
 
-    return fetch("http://localhost:11434/api/generate", {
+  try {
+    const res = await fetch("http://localhost:11434/api/generate", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(req),
-    }) 
-    // .then(response => response.json())
-    .then((data) => {
-      console.log(data.body)
-      const stream = data.body
-      console.log('stream', stream)
-      return stream
-      })
-    .catch(error => console.error('Error:', error));
-  
-}
+    });
+
+    if (res.body) {
+      return res.body as unknown as ReadableStream;
+    } else {
+      throw Error("Response is null.");
+    }
+  } catch (error) {
+    throw Error(`Unexpected error: ${error}`);
+  }
+};

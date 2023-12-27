@@ -10,25 +10,26 @@ export const ChatArea = () => {
 
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
-  const [chatResponse, setChatResponse] = useState('');
+  const [chatResponse, setChatResponse] = useState("");
   const [selectedModel, setSelectedModel] = useState(modelOptions[0]);
 
   const handleStreamedResponse = async (input: string) => {
-    const decoder = new TextDecoder('utf-8');
-    let output = ''; 
+    const decoder = new TextDecoder("utf-8");
+    let output = "";
 
     const stream = await getChatCompletionWithStream(input, selectedModel);
     setIsLoading(false);
 
-    for await (const chunk of stream!) {
+    // TODO: fix any type
+    for await (const chunk of stream) {
       const decodedValue: any = JSON.parse(decoder.decode(chunk));
-      output = output + decodedValue.response
+      output = output + decodedValue.response;
       setChatResponse(output);
-  }
-}
+    }
+  };
 
   const onSubmit = async () => {
-    // refresh 
+    // refresh
     setIsLoading(true);
     const currentInput = input;
 
