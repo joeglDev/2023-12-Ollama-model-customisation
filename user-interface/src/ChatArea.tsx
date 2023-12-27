@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Card } from "./components/Card";
-import { getChatCompletion } from "./api";
+import { getChatCompletionWithStream } from "./api";
 import { ModelSelect } from "./components/ModelSelect";
 
 export const ChatArea = () => {
@@ -9,25 +9,31 @@ export const ChatArea = () => {
     "Querying the model. Please be patient this may take a while.";
 
   const [input, setInput] = useState("");
-  const [output, setOutput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [chatResponse, setChatResponse] = useState('');
   const [selectedModel, setSelectedModel] = useState(modelOptions[0]);
 
-  const onSubmit = async () => {
-    setIsLoading(true);
+  const handleStreamedResponse = async (input: string) => {
+    const decoder = new TextDecoder('utf-8');
+    let output = ''; 
 
-    // refresh input
+    const stream = await getChatCompletionWithStream(input, selectedModel);
+    setIsLoading(false);
+
+    for await (const chunk of stream!) {
+      const decodedValue: any = JSON.parse(decoder.decode(chunk));
+      output = output + decodedValue.response
+      setChatResponse(output);
+  }
+}
+
+  const onSubmit = async () => {
+    // refresh 
+    setIsLoading(true);
     const currentInput = input;
-    // setInput('');
 
     // make api call
-    const rawResponse = await getChatCompletion(currentInput, selectedModel);
-
-    // remove load display response or error code
-    if (rawResponse.response) {
-      setOutput(rawResponse.response);
-      setIsLoading(false);
-    }
+    handleStreamedResponse(currentInput);
   };
 
   return (
@@ -55,7 +61,7 @@ export const ChatArea = () => {
       <h3>Response</h3>
       <Card>
         <p aria-label="Chat response" aria-live="assertive">
-          {isLoading ? loadingText : output}
+          {!isLoading ? chatResponse : loadingText}
         </p>
       </Card>
     </section>
