@@ -20,8 +20,27 @@ This repository holds various customisations and files supporting my investigati
 - Purpose: A mythological western dragon. Should answer in a non-human manner of speech.
 
 ### Amadeus
-- Purpose - Expert scientist. To provide consul on scientific matters.
+- Purpose: Expert scientist. To provide consul on scientific matters.
 
 ## Start guide
 
-Add start / dev guide here
+1. Follow the [Ollama](https://github.com/jmorganca/ollama) quick start guide to set up Ollama. In brief:
+- Download ollama (linux): `curl https://ollama.ai/install.sh | sh`
+- Pull your model: `ollama pull mistral`
+
+2. Create custom model files:
+`
+touch modelFileName.txt
+open modelFileName.txt
+`
+
+- Copy text into model file from repo model files.
+- Create model file: `ollama create -f ./pathToModelFile.txt`
+
+3. Run the model in command line: 
+- `ollama run model`
+
+4. To run in UI:
+- cd into UI directory: `cd ./user-interface`
+- Install UI dependencies: `npm i`
+- Run the UI in dev mode: `npm run dev`
