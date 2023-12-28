@@ -4,7 +4,8 @@ import { getChatCompletionWithStream } from "./api";
 import { ModelSelect } from "./components/ModelSelect";
 
 export const ChatArea = () => {
-  const modelOptions = ["mistral", "wise-ancient", "deep-engineer", "dragon"];
+  // refactor model selection to be objects with name included
+  const modelOptions = ["mistral", "wise-ancient", "deep-engineer", "dragon", "amadeus"];
   const loadingText =
     "Querying the model. Please be patient this may take a while.";
 

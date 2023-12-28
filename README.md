@@ -19,6 +19,9 @@ This repository holds various customisations and files supporting my investigati
 ### Dragon
 - Purpose: A mythological western dragon. Should answer in a non-human manner of speech.
 
+### Amadeus
+- Purpose - Expert scientist. To provide consul on scientific matters.
+
 ## Start guide
 
 Add start / dev guide here
