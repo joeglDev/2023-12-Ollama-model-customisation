@@ -25,7 +25,6 @@ export const getChatCompletion = async (prompt: string, model: string) => {
       body: JSON.stringify(req),
     });
 
-    // TODO: fix any type
     const result = await res.json();
 
     return result;
