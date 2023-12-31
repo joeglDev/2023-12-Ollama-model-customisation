@@ -1,4 +1,4 @@
-import { getModelOptions } from "./api";
+import { getModelOptions } from "./apiModels";
 
 export const getModelOptionsController = async () => {
     const response = await getModelOptions();

@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Card, ChatResponseCard } from "./components/Card";
-import { getChatCompletionWithStream } from "./api";
+import { getChatCompletionWithStream } from "./api/apiModels";
 import { ModelSelect } from "./components/ModelSelect";
 import { PromptTextArea } from "./components/styled-components/PromptTextArea";
 import { SubmitButton } from "./components/styled-components/SubmitButton";
 import { DropdownContainer } from "./components/styled-components/DropDownContainer";
-import { getModelOptionsController } from "./apiCotrollers";
+import { getModelOptionsController } from "./api/apiControllers";
 
 interface ModelDefinitions {
   name: string;

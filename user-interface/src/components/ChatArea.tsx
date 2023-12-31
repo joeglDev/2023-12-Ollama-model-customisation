@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Card } from "./styled-components/Card";
-import { getChatCompletionWithStream } from "../api";
+import { getChatCompletionWithStream } from "../api/apiModels";
 import { ModelSelect } from "./styled-components/ModelSelect";
 
 interface DecodedStreamedResponse {
