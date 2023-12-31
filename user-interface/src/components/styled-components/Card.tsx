@@ -5,5 +5,5 @@ export const Card = styled.div`
   max-width: 80%;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 2rem;
 `;

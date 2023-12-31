@@ -1,18 +1,21 @@
 import { useState } from "react";
-import { Card } from "./components/Card";
+import { Card, ChatResponseCard } from "./components/Card";
 import { getChatCompletionWithStream } from "./api";
 import { ModelSelect } from "./components/ModelSelect";
+import { PromptTextArea } from "./components/styled-components/PromptTextArea";
+import { SubmitButton } from "./components/styled-components/SubmitButton";
+import { DropdownContainer } from "./components/styled-components/DropDownContainer";
 
 export const ChatArea = () => {
   // refactor model selection to be objects with name included
-  const modelOptions = ["mistral", "wise-ancient", "deep-engineer", "dragon", "amadeus"];
+  const modelOptions = [{name: 'Select a model from the dropdown. Default = Mistral', value: 'mistral'}, {name:'Mistral', value: 'mistral'}, {name: "Wise ancient", value: 'wise-ancient'}, {name: 'Deep engineer', value: 'deep-engineer'}, {name: 'Dragon', value: 'dragon'}, {name: 'Amadeus', value: 'amadeus'}];
   const loadingText =
     "Querying the model. Please be patient this may take a while.";
 
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [chatResponse, setChatResponse] = useState("");
-  const [selectedModel, setSelectedModel] = useState(modelOptions[0]);
+  const [selectedModel, setSelectedModel] = useState(modelOptions[1].value);
 
   const handleStreamedResponse = async (input: string) => {
     const decoder = new TextDecoder("utf-8");
@@ -40,32 +43,33 @@ export const ChatArea = () => {
 
   return (
     <section>
-      <h2>Chat here ^w^</h2>
-      <Card>
-        <textarea
-          aria-label="Type your prompt here."
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        ></textarea>
-        <label htmlFor="model-select">Select a model:</label>
-        <ModelSelect
-          id="model-select"
-          aria-label="select a model"
-          onChange={(e) => setSelectedModel(e.target.value)}
-        >
-          {modelOptions.map((model) => (
-            <option value={model}>{model}</option>
-          ))}
-        </ModelSelect>
-        <button onClick={() => onSubmit()}>Submit your prompt</button>
-      </Card>
 
-      <h3>Response</h3>
-      <Card>
+      <ChatResponseCard>
         <p aria-label="Chat response" aria-live="assertive">
           {!isLoading ? chatResponse : loadingText}
         </p>
+      </ChatResponseCard>
+
+      <Card>
+        <PromptTextArea
+         placeholder="Type your prompt here..."
+          aria-label="Type your prompt here."
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+        ></PromptTextArea>
+        <DropdownContainer>
+        <ModelSelect
+          aria-label="select a model from the dropdown"
+          onChange={(e) => setSelectedModel(e.target.value)}
+        >
+          {modelOptions.map((model) => (
+            <option value={model.value}>{model.name}</option>
+          ))}
+        </ModelSelect>
+        </DropdownContainer>
+        <SubmitButton onClick={() => onSubmit()}>Submit your prompt</SubmitButton>
       </Card>
+
     </section>
   );
 };
