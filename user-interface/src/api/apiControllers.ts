@@ -2,7 +2,6 @@ import { getModelOptions } from "./apiModels";
 
 export const getModelOptionsController = async () => {
     const response = await getModelOptions();
-    console.log(response)
 
     const models = response?.models.map((model) => {
         const value = model.name.split(':')[0];

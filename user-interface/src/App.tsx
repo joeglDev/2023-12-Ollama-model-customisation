@@ -1,6 +1,6 @@
 import "./App.css";
-import { ChatArea } from "./ChatArea";
-import { Summary } from "./Summary";
+import { ChatArea } from "./components/ChatArea";
+import { Summary } from "./components/Summary";
 
 function App() {
   return (
